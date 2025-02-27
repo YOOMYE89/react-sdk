@@ -1,15 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import Main from "./view/Main";
 
 class MyReactAppSDK {
   constructor() {
     this.root = null;
   }
 
-  init(containerId = "root") {
+  init(containerId = "root", usage) {
     const container = document.getElementById(containerId);
 
+    console.log(usage)
+
+    if(!usage) {
+      console.error(`❌ "${usage}" is mandatory`);
+      return;
+    }
+      
     if (!container) {
       console.error(`❌ Container with id "${containerId}" not found!`);
       return;
@@ -21,7 +28,7 @@ class MyReactAppSDK {
 
     this.root.render(
       <React.StrictMode>
-        <App />
+        <Main usage={usage} />
       </React.StrictMode>
     );
 
